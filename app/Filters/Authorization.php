@@ -26,25 +26,25 @@ class Authorization implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        if (session('role_id') != 1) :
-            $segment             = $request->uri->getSegment(1);
+        // if (session('role_id') != 1) :
+        //     $segment             = $request->uri->getSegment(1);
 
-            if ($segment) :
-                $menu   = db_connect()->query("exec getMenuByURL '$segment'")->getRow();
-                if (!$menu) :
-                    session()->setFlashdata('warning', 'Halaman tidak ditemukan');
-                    return redirect()->to(base_url('/'));
-                else :
-                    $menu_id = $menu->id;
-                    $role_id = session('role_id');
-                    $checkAccess = db_connect()->query("exec checkAccessMenu @menuID =  $menu_id, @roleID =  $role_id")->getRow();
-                    if (!$checkAccess) :
-                        session()->setFlashdata('warning', 'Halaman tidak ditemukan');
-                        return redirect()->to(base_url('/'));
-                    endif;
-                endif;
-            endif;
-        endif;
+        //     if ($segment) :
+        //         $menu   = db_connect()->query("exec getMenuByURL '$segment'")->getRow();
+        //         if (!$menu) :
+        //             session()->setFlashdata('warning', 'Halaman tidak ditemukan');
+        //             return redirect()->to(base_url('/'));
+        //         else :
+        //             $menu_id = $menu->id;
+        //             $role_id = session('role_id');
+        //             $checkAccess = db_connect()->query("exec checkAccessMenu @menuID =  $menu_id, @roleID =  $role_id")->getRow();
+        //             if (!$checkAccess) :
+        //                 session()->setFlashdata('warning', 'Halaman tidak ditemukan');
+        //                 return redirect()->to(base_url('/'));
+        //             endif;
+        //         endif;
+        //     endif;
+        // endif;
     }
 
     /**

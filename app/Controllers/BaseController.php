@@ -35,7 +35,7 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['form', 'url', 'cookie', 'date', 'security'];
+    protected $helpers = ['form', 'url', 'cookie', 'date', 'security', 'layouts'];
 
     /**
      * Constructor.
@@ -46,7 +46,6 @@ abstract class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
-        $this->session      = \Config\Services::session();
         $this->segment      = \Config\Services::request();
         $this->db           = \Config\Database::connect();
         $this->validation   = \Config\Services::validation();

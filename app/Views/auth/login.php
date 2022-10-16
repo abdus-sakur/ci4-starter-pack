@@ -20,6 +20,7 @@
                     <div class="auth-logo">
                         <img src="<?= base_url("assets/images/logo/logo.svg"); ?>" alt="Logo">
                     </div>
+                    <?= $this->include('components/alert'); ?>
                     <h1 class="auth-title">Log in</h1>
                     <!-- <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p> -->
 
@@ -54,6 +55,7 @@
         </div>
 
     </div>
+    <script src="<?= base_url("assets/js/bootstrap.js"); ?>"></script>
 </body>
 
 </html>

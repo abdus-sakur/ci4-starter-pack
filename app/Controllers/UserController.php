@@ -36,14 +36,14 @@ class UserController extends BaseController
                     'user_role' => $user->user_role,
                     'isLogin'   => TRUE
                 ]);
-                return redirect()->to(base_url('/'));
+                return redirect()->to(base_url('dashboard'));
             } else {
-                session()->setFlashdata('notif_error', '<b>Your ID or Password is Wrong !</b> ');
-                return redirect()->to(base_url());
+                session()->setFlashdata('alert_error', '<b>Username or Password is wrong</b> ');
+                return redirect()->to(base_url('login'));
             }
         } else {
-            session()->setFlashdata('notif_error', '<b>Your ID or Password is Wrong!</b> ');
-            return redirect()->to(base_url());
+            session()->setFlashdata('alert_error', '<b>Username or Password is wrong</b> ');
+            return redirect()->to(base_url('login'));
         }
     }
 
@@ -51,5 +51,22 @@ class UserController extends BaseController
     {
         $this->session->destroy();
         return redirect()->to(base_url('login'));
+    }
+
+    public function userIndex()
+    {
+        return view('settings/user/user_setting', [
+            'title' => "Manage User",
+            'users' => $this->m_user->findAll(),
+            'roles' => $this->db->table("user_role")->get()->getResult()
+        ]);
+    }
+
+    public function storeRole()
+    {
+        $input = $this->request->getPost();
+        $store = $this->m_user->storeRole($input);
+        session()->setFlashdata($store ? 'alert_success' : 'alert_error', $store ? "Berhasil menambahkan role" : "Gagal menambahkan role, inputan tidak sesuai");
+        return redirect()->to(base_url("user-setting"));
     }
 }
