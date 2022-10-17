@@ -13,7 +13,7 @@ class User extends Seeder
             'username'  => 'admin',
             'email'     => 'admin@admin.com',
             'password'  => password_hash('admin', PASSWORD_DEFAULT),
-            'user_role' => 1,
+            'role_id'   => 1,
             'created_at' => date("Y-m-d h:i:s"),
         ];
 

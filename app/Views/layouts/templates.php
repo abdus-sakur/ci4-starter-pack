@@ -4,13 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?= csrf_token(); ?>">
     <title>Dashboard - Mazer Admin Dashboard</title>
-
+    <!-- css -->
     <link rel="stylesheet" href="<?= base_url("assets/css/main/app.css"); ?>">
-    <link rel="stylesheet" href="<?= base_url("assets/css/main/app-dark.css"); ?>">
-    <link rel="shortcut icon" href="<?= base_url("assets/images/logo/favicon.svg"); ?>" type="image/x-icon">
     <link rel="shortcut icon" href="<?= base_url("assets/images/logo/favicon.png"); ?>" type="image/png">
     <link rel="stylesheet" href="<?= base_url("assets/css/shared/iconly.css"); ?>">
+    <!-- plugins -->
+    <link rel="stylesheet" href="<?= base_url('assets/plugins/sweetalert2/sweetalert2.min.css'); ?>">
+    <!-- script -->
+    <script src="<?= base_url('assets/plugins/jquery/jquery.min.js'); ?>"></script>
+    <script>
+        let csrfName = '<?= csrf_token(); ?>'
+        let csrfHash = '<?= csrf_hash(); ?>'
+    </script>
 
 </head>
 
@@ -39,6 +46,7 @@
             </div>
             <div class="page-content">
                 <?= $this->include('components/alert'); ?>
+                <?= $this->include('components/validation_errors'); ?>
                 <?= $this->renderSection("content"); ?>
             </div>
             <?= $this->include("layouts/footer"); ?>
@@ -46,10 +54,8 @@
     </div>
     <script src="<?= base_url("assets/js/bootstrap.js"); ?>"></script>
     <script src="<?= base_url("assets/js/app.js"); ?>"></script>
-
-    <!-- Need: Apexcharts -->
-    <script src="<?= base_url("assets/plugins/apexcharts/apexcharts.min.js"); ?>"></script>
-    <script src="<?= base_url("assets/js/pages/dashboard.js"); ?>"></script>
+    <script src="<?= base_url('assets/plugins/sweetalert2/sweetalert2.min.js'); ?>"></script>
+    <script src="<?= base_url("assets/js/pages/sweetalert2.js"); ?>"></script>
 
 </body>
 

@@ -18,11 +18,11 @@ class CreateCiSessionsTable extends Migration
         ]);
         $this->forge->addKey('id', true);
         $this->forge->addKey('timestamp');
-        $this->forge->createTable('ci_sessions', true);
+        $this->forge->createTable('app_sessions', true);
     }
 
     public function down()
     {
-        $this->forge->dropTable('ci_sessions', true);
+        $this->forge->dropTable('app_sessions', true);
     }
 }

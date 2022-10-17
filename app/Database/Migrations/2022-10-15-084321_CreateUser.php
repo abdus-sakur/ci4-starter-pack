@@ -22,10 +22,12 @@ class CreateUser extends Migration
             'email' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
+                'unique'     => true
             ],
             'username' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '64',
+                'unique'     => true
             ],
             'password' => [
                 'type'       => 'VARCHAR',
@@ -35,7 +37,7 @@ class CreateUser extends Migration
                 'type'      => 'TEXT',
                 'null'      => true,
             ],
-            'user_role' => [
+            'role_id' => [
                 'type'       => 'INT',
                 'constraint' => 11,
             ],

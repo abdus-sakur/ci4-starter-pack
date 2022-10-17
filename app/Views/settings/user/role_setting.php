@@ -15,9 +15,9 @@
                 <td>
                     <a href="javascript:;" class="me-2" data-bs-toggle="modal" data-bs-target="#editRole<?= $i; ?>">Edit</a>
                     <?php if ($role->id != 1) : ?>
-                        <a href="">Menu Access</a>
+                        <a href="" class="text-success">Menu Access</a>
                     <?php endif; ?>
-                    <a href="" class="ms-2">Delete</a>
+                    <a href="javascript:;" class="ms-2 text-danger delete" data-id="<?= $role->id; ?>" data-url="<?= base_url("user-setting/delete-role"); ?>">Delete</a>
                 </td>
             </tr>
             <?= view('settings/user/_edit_role', ['index' => $i, 'id' => $role->id, 'role' => $role->name]); ?>
@@ -26,7 +26,7 @@
 </table>
 
 <!-- create  -->
-<div class="modal fade" id="addRole" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addRoleLabel" aria-hidden="true">
+<div class="modal fade" id="addRole" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="addRoleLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

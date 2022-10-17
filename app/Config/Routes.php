@@ -22,7 +22,10 @@ $routes->get('dashboard', 'DashboardController::index');
 // ----------------------- SETTING ------------------------------
 //user setting
 $routes->get('user-setting', 'UserController::userIndex');
+$routes->post('user-setting/store-user', 'UserController::storeUser');
+$routes->delete('user-setting/delete-user', 'UserController::deleteUser');
 $routes->post('user-setting/store-role', 'UserController::storeRole');
+$routes->delete('user-setting/delete-role', 'UserController::deleteRole');
 
 
 

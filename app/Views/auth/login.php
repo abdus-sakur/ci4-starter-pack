@@ -25,6 +25,7 @@
                     <!-- <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p> -->
 
                     <form action="<?= base_url("login"); ?>" method="POST">
+                        <?= csrf_field(); ?>
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="text" class="form-control form-control-xl" name="username" placeholder="Username" autocomplete="x" required>
                             <div class="form-control-icon">

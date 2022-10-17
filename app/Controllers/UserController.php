@@ -33,7 +33,7 @@ class UserController extends BaseController
                     'fullname'  => $user->fullname,
                     'email'     => $user->email,
                     'username'  => $user->username,
-                    'user_role' => $user->user_role,
+                    'role_id'   => $user->role_id,
                     'isLogin'   => TRUE
                 ]);
                 return redirect()->to(base_url('dashboard'));
@@ -49,7 +49,7 @@ class UserController extends BaseController
 
     public function logout()
     {
-        $this->session->destroy();
+        session()->destroy();
         return redirect()->to(base_url('login'));
     }
 
@@ -58,15 +58,45 @@ class UserController extends BaseController
         return view('settings/user/user_setting', [
             'title' => "Manage User",
             'users' => $this->m_user->findAll(),
-            'roles' => $this->db->table("user_role")->get()->getResult()
+            'roles' => $this->db->table("user_role")->get()->getResult(),
+            'validation' => $this->validation,
         ]);
+    }
+
+    public function deleteUser()
+    {
+        $id = $this->request->getPost('id');
+        return $this->m_user->delete($id);
+    }
+
+    public function storeUser()
+    {
+        $input = $this->request->getPost();
+        if (!$this->validate([
+            'fullname'  => 'required',
+            'username'  => 'required|alpha_numeric|is_unique[users.username,id,{id}]',
+            'email'     => 'required|is_unique[users.email,id,{id}]',
+            'password'  => 'required_without[id]|matches[confirm_password]',
+            'role'      => 'required',
+        ])) {
+            return redirect()->to(base_url('user-setting'))->withInput('validation', $this->validation);
+        };
+        $store = $this->m_user->storeUser($input);
+        session()->setFlashdata($store ? 'alert_success' : 'alert_error', $store ? "Berhasil menyimpan data" : "Gagal menambahkan data, inputan tidak sesuai");
+        return redirect()->to(base_url("user-setting"));
     }
 
     public function storeRole()
     {
         $input = $this->request->getPost();
         $store = $this->m_user->storeRole($input);
-        session()->setFlashdata($store ? 'alert_success' : 'alert_error', $store ? "Berhasil menambahkan role" : "Gagal menambahkan role, inputan tidak sesuai");
+        session()->setFlashdata($store ? 'alert_success' : 'alert_error', $store ? "Berhasil menyimpan data" : "Gagal menyimpan data, inputan tidak sesuai");
         return redirect()->to(base_url("user-setting"));
+    }
+
+    public function deleteRole()
+    {
+        $id = $this->request->getPost('id');
+        return $this->db->table('user_role')->delete(['id' => $id]);
     }
 }
