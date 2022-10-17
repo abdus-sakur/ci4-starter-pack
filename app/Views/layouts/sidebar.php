@@ -19,13 +19,19 @@
         <li class="sidebar-item  has-sub">
             <a href="#" class='sidebar-link'>
                 <i class="bi bi-stack"></i>
-                <span>Components</span>
+                <span>Menu</span>
             </a>
             <ul class="submenu">
                 <li class="submenu-item ">
-                    <a href="#" class="sidebar-link">
+                    <a href="<?= base_url('menu-setting'); ?>" class="sidebar-link">
                         <i class="bi bi-circle-fill"></i>
-                        <span>Alert</span>
+                        <span>Menu</span>
+                    </a>
+                </li>
+                <li class="submenu-item ">
+                    <a href="<?= base_url('submenu-setting'); ?>" class="sidebar-link">
+                        <i class="bi bi-circle-fill"></i>
+                        <span>Sub Menu</span>
                     </a>
                 </li>
             </ul>

@@ -57,16 +57,10 @@ class UserController extends BaseController
     {
         return view('settings/user/user_setting', [
             'title' => "Manage User",
-            'users' => $this->m_user->findAll(),
+            'users' => $this->m_user->getUser(),
             'roles' => $this->db->table("user_role")->get()->getResult(),
             'validation' => $this->validation,
         ]);
-    }
-
-    public function deleteUser()
-    {
-        $id = $this->request->getPost('id');
-        return $this->m_user->delete($id);
     }
 
     public function storeUser()
@@ -82,15 +76,26 @@ class UserController extends BaseController
             return redirect()->to(base_url('user-setting'))->withInput('validation', $this->validation);
         };
         $store = $this->m_user->storeUser($input);
-        session()->setFlashdata($store ? 'alert_success' : 'alert_error', $store ? "Berhasil menyimpan data" : "Gagal menambahkan data, inputan tidak sesuai");
+        $this->flashdataStore($store);
         return redirect()->to(base_url("user-setting"));
+    }
+
+    public function deleteUser()
+    {
+        $id = $this->request->getPost('id');
+        return $this->m_user->delete($id);
     }
 
     public function storeRole()
     {
+        if (!$this->validate([
+            'role'  => 'required|is_unique[user_role.name,id,{id}]'
+        ])) {
+            return redirect()->to(base_url('user-setting'))->withInput('validation', $this->validation);
+        };
         $input = $this->request->getPost();
         $store = $this->m_user->storeRole($input);
-        session()->setFlashdata($store ? 'alert_success' : 'alert_error', $store ? "Berhasil menyimpan data" : "Gagal menyimpan data, inputan tidak sesuai");
+        $this->flashdataStore($store);
         return redirect()->to(base_url("user-setting"));
     }
 

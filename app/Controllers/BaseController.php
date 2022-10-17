@@ -53,4 +53,9 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
     }
+
+    public function flashdataStore($store)
+    {
+        return session()->setFlashdata($store ? 'alert_success' : 'alert_error', $store ? "Berhasil menyimpan data" : "Gagal menyimpan data, inputan tidak sesuai");
+    }
 }

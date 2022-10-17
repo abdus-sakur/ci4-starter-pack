@@ -26,6 +26,16 @@ $routes->post('user-setting/store-user', 'UserController::storeUser');
 $routes->delete('user-setting/delete-user', 'UserController::deleteUser');
 $routes->post('user-setting/store-role', 'UserController::storeRole');
 $routes->delete('user-setting/delete-role', 'UserController::deleteRole');
+// menu setting 
+$routes->get('menu-setting', 'MenuController::index');
+$routes->post('menu-setting/store-menu', 'MenuController::storeMenu');
+$routes->delete('menu-setting/delete-menu', 'MenuController::deleteMenu');
+$routes->post('menu-setting/store-menu-category', 'MenuController::storeMenuCategory');
+$routes->delete('menu-setting/delete-menu-category', 'MenuController::deleteMenuCategory');
+// sub menu 
+$routes->get('submenu-setting', 'MenuController::indexSubMenu');
+$routes->post('submenu-setting/store-submenu', 'MenuController::storeSubMenu');
+$routes->delete('submenu-setting/delete-submenu', 'MenuController::deleteSubMenu');
 
 
 

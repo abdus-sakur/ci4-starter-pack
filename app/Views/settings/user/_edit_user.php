@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editUser">Add Role</h1>
+                <h1 class="modal-title fs-5" id="editUser">Ubah User</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -11,7 +11,7 @@
                     <?= csrf_field(); ?>
                     <input type="hidden" name="id" value="<?= $user->id; ?>">
                     <div class="mb-3 row">
-                        <label class="col-sm-4 col-form-label">Fullname</label>
+                        <label class="col-sm-4 col-form-label">Nama Lengkap</label>
                         <div class="col-sm-8">
                             <input type="text" class="form-control" name="fullname" value="<?= $user->fullname; ?>">
                         </div>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="text-end mt-2">
-                        <button class="btn btn-primary">Submit</button>
+                        <button class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>

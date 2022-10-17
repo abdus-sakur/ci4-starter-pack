@@ -8,7 +8,17 @@ class User extends Model
 {
     protected $table            = 'users';
     protected $returnType       = 'object';
-    protected $allowedFields    = ['fullname', 'username', 'email', 'password', 'user_role', 'avatar'];
+    protected $allowedFields    = ['fullname', 'username', 'email', 'password', 'role_id', 'avatar'];
+    protected $useTimestamps    = true;
+
+    public function getUser($id = null)
+    {
+        if ($id) :
+            return $this->select('users.*,user_role.name as role_name')->where('users.id', $id)->join('user_role', 'user_role.id = users.role_id')->first();
+        else :
+            return $this->select('users.*,user_role.name as role_name')->join('user_role', 'user_role.id = users.role_id')->findAll();
+        endif;
+    }
 
     public function storeRole($input)
     {
@@ -36,7 +46,7 @@ class User extends Model
         if ($input['password']) :
             $data['password'] = password_hash($input['password'], PASSWORD_DEFAULT);
         endif;
-        if ($input['id']) :
+        if (isset($input['id'])) :
             $data['id'] = $input['id'];
         endif;
 

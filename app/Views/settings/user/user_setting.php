@@ -4,7 +4,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <a href="javascript:;" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addUser">Add User</a>
+                <a href="javascript:;" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addUser">Tambah User</a>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -12,6 +12,7 @@
                             <th>Nama</th>
                             <th>username</th>
                             <th>E-mail</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -22,9 +23,10 @@
                                 <td><?= $user->fullname; ?></td>
                                 <td><?= $user->username; ?></td>
                                 <td><?= $user->email; ?></td>
+                                <td><?= $user->role_name; ?></td>
                                 <td>
-                                    <a href="javascript:;" class="me-2" data-bs-toggle="modal" data-bs-target="#editUser<?= $i; ?>">Edit</a>
-                                    <a href="javascript:;" class="ms-2 text-danger delete" data-id="<?= $user->id; ?>" data-url="<?= base_url("user-setting/delete-user"); ?>">Delete</a>
+                                    <a href="javascript:;" class="me-2" data-bs-toggle="modal" data-bs-target="#editUser<?= $i; ?>">Ubah</a>
+                                    <a href="javascript:;" class="ms-2 text-danger delete" data-id="<?= $user->id; ?>" data-url="<?= base_url("user-setting/delete-user"); ?>">Hapus</a>
                                 </td>
                             </tr>
                             <?= view('settings/user/_edit_user', ['index' => $i, 'user' => $user]); ?>
@@ -37,14 +39,14 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="addUserLabel">Add User</h1>
+                                <h1 class="modal-title fs-5" id="addUserLabel">Tambah User</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form action="<?= base_url("user-setting/store-user"); ?>" method="POST">
                                     <?= csrf_field(); ?>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-4 col-form-label">Fullname</label>
+                                        <label class="col-sm-4 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-8">
                                             <input type="text" class="form-control" name="fullname" value="<?= old('fullname'); ?>">
                                         </div>

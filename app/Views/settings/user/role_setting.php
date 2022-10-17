@@ -1,10 +1,10 @@
-<a href="javascript:;" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addRole">Add Role</a>
+<a href="javascript:;" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addRole">Tambah Role</a>
 <table class="table table-bordered">
     <thead>
         <tr>
             <th>#</th>
             <th>Nama Role</th>
-            <th>Action</th>
+            <th>Aksi</th>
         </tr>
     </thead>
     <tbody>
@@ -13,11 +13,11 @@
                 <td><?= $i + 1; ?></td>
                 <td><?= $role->name; ?></td>
                 <td>
-                    <a href="javascript:;" class="me-2" data-bs-toggle="modal" data-bs-target="#editRole<?= $i; ?>">Edit</a>
+                    <a href="javascript:;" class="me-2" data-bs-toggle="modal" data-bs-target="#editRole<?= $i; ?>">Ubah</a>
                     <?php if ($role->id != 1) : ?>
                         <a href="" class="text-success">Menu Access</a>
                     <?php endif; ?>
-                    <a href="javascript:;" class="ms-2 text-danger delete" data-id="<?= $role->id; ?>" data-url="<?= base_url("user-setting/delete-role"); ?>">Delete</a>
+                    <a href="javascript:;" class="ms-2 text-danger delete" data-id="<?= $role->id; ?>" data-url="<?= base_url("user-setting/delete-role"); ?>">Hapus</a>
                 </td>
             </tr>
             <?= view('settings/user/_edit_role', ['index' => $i, 'id' => $role->id, 'role' => $role->name]); ?>
@@ -30,18 +30,18 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addRoleLabel">Add Role</h1>
+                <h1 class="modal-title fs-5" id="addRoleLabel">Tambah Role</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="<?= base_url("user-setting/store-role"); ?>" method="POST">
                     <?= csrf_field(); ?>
                     <div>
-                        <label for="">Role Name</label>
+                        <label for="">Nama Role</label>
                         <input type="text" class="form-control" name="role" required>
                     </div>
                     <div class="text-end mt-2">
-                        <button class="btn btn-primary">Submit</button>
+                        <button class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>
