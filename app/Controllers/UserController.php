@@ -22,8 +22,8 @@ class UserController extends BaseController
 
     public function verifyUser()
     {
-        $username   = htmlspecialchars($this->request->getPost('username'));
-        $password   = htmlspecialchars($this->request->getPost('password'));
+        $username   = $this->request->getPost('username');
+        $password   = $this->request->getPost('password') ?? '';
         $user       = $this->m_user->where('username', $username)->first();
         if ($user) {
             $verify = password_verify($password, $user->password);
